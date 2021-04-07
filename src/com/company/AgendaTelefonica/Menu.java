@@ -1,27 +1,31 @@
-/* package com.company.AgendaTelefonica;
+package com.company.AgendaTelefonica;
 
 import static com.company.AgendaTelefonica.Agenda.scanner;
 
 public class Menu {
 
-    boolean salir = false;
-    int opcion;
+    String elegirOpcion(String[] opciones){
 
-    while(!salir){
-        System.out.println("1. Añadir contacto");
-        System.out.println("2. Listar contacto");
-        System.out.println("3. Buscar contacto");
-        System.out.println("4. Existe contacto");
-        System.out.println("5. Eliminar contacto");
-        System.out.println("6. Contactos disponibles");
-        System.out.println("7. Salir");
-    }
+        boolean seguirPidiendo = true;
+        String opcion = "";
+        while (seguirPidiendo){
+            for (int i = 0; i < opciones.length; i++) {
+                System.out.println((i + 1) + ". " + opciones[i]);
+            }
 
-    switch(opcion){
-        case 1:
-            CampoDeTexto campoDeTexto = new CampoDeTexto();
-            campoDeTexto.pedir();
+            System.out.print("\n\033[1;31mOpcion: ");
+
+            opcion = Agenda.scanner.nextLine();
+
+            if (Integer.parseInt(opcion) > opciones.length) {
+                Mensaje mensaje = new Mensaje();
+                mensaje.mostrarError("Esa opción no existe");
+                mensaje.mostrarError("Porfavor, escoja una opción válida");
+            }else {
+                seguirPidiendo = false;
+            }
+        }
+
+        return opcion;
     }
 }
-
- */
